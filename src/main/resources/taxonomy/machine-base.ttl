@@ -1,0 +1,400 @@
+# Machine Taxonomy Base Schema in RDF-S (Turtle format)
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix machine: <http://taxonomy.sirktek.no/machine#> .
+
+# ===================================================================
+# Root Machine Class
+# ===================================================================
+
+machine:Machine a rdfs:Class ;
+    rdfs:label "Machine"@en, "Maskin"@no ;
+    rdfs:comment "Root class for all machines and powered equipment"@en .
+
+# ===================================================================
+# Level 1 Categories - Domain Groupings
+# Additional level-1 groupings (e.g. Computer) can be added here.
+# ===================================================================
+
+machine:WoodshopMachine a rdfs:Class ;
+    rdfs:subClassOf machine:Machine ;
+    rdfs:label "Woodshop Machine"@en, "Snekkermaskin"@no ;
+    rdfs:comment "Machines used in a woodshop or carpentry workshop"@en .
+
+machine:TextileMachine a rdfs:Class ;
+    rdfs:subClassOf machine:Machine ;
+    rdfs:label "Textile Machine"@en, "Tekstilmaskin"@no ;
+    rdfs:comment "Machines used for working with textiles and fabrics"@en .
+
+# ===================================================================
+# Level 2 Categories - Woodshop Machines
+# ===================================================================
+
+machine:HandheldTool a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Handheld Tool"@en, "Håndholdt verktøy"@no ;
+    skos:altLabel "Power Tool"@en ;
+    rdfs:comment "Portable, hand-operated powered tools (drills, sanders, jigsaws, etc.)"@en .
+
+machine:CNCMachine a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "CNC Machine"@en, "CNC-maskin"@no ;
+    skos:altLabel "Computer Numerical Control Machine"@en ;
+    rdfs:comment "Computer numerical control machine for automated cutting, milling, or routing"@en .
+
+machine:HydraulicSaw a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Hydraulic Saw"@en, "Hydraulisk sag"@no ;
+    rdfs:comment "Hydraulically-driven saw for cutting wood or other materials"@en .
+
+# ===================================================================
+# Level 3 Categories - CNC Machines
+# ===================================================================
+
+machine:TwoAxisCNCMachine a rdfs:Class ;
+    rdfs:subClassOf machine:CNCMachine ;
+    rdfs:label "2-Axis CNC Machine"@en, "2-akset CNC-maskin"@no ;
+    skos:altLabel "Two Axis CNC"@en ;
+    rdfs:comment "CNC machine with two controllable axes (typically X and Y)"@en .
+
+machine:FiveAxisCNCMachine a rdfs:Class ;
+    rdfs:subClassOf machine:CNCMachine ;
+    rdfs:label "5-Axis CNC Machine"@en, "5-akset CNC-maskin"@no ;
+    skos:altLabel "Five Axis CNC"@en ;
+    rdfs:comment "CNC machine with five controllable axes (X, Y, Z plus two rotational)"@en .
+
+# ===================================================================
+# Level 2 Categories - Textile Machines
+# ===================================================================
+
+machine:SewingMachine a rdfs:Class ;
+    rdfs:subClassOf machine:TextileMachine ;
+    rdfs:label "Sewing Machine"@en, "Symaskin"@no ;
+    rdfs:comment "Machine for stitching fabric and other materials together with thread"@en .
+
+machine:FabricCuttingMachine a rdfs:Class ;
+    rdfs:subClassOf machine:TextileMachine ;
+    rdfs:label "Fabric Cutting Machine"@en, "Stoffskjæremaskin"@no ;
+    skos:altLabel "Cloth Cutting Machine"@en ;
+    rdfs:comment "Machine for cutting fabric, textiles or cloth to size"@en .
+
+# ===================================================================
+# Power Source Enumeration
+# ===================================================================
+
+machine:PowerSource a rdfs:Class ;
+    rdfs:label "Power Source"@en, "Energikilde"@no ;
+    rdfs:comment "Enumeration of power sources used by machines"@en .
+
+machine:Electric a machine:PowerSource ;
+    rdfs:label "Electric"@en, "Elektrisk"@no ;
+    rdfs:comment "Electrically powered"@en .
+
+machine:Hydraulic a machine:PowerSource ;
+    rdfs:label "Hydraulic"@en, "Hydraulisk"@no ;
+    rdfs:comment "Hydraulically powered"@en .
+
+machine:Pneumatic a machine:PowerSource ;
+    rdfs:label "Pneumatic"@en, "Pneumatisk"@no ;
+    rdfs:comment "Pneumatically powered (compressed air)"@en .
+
+machine:BatteryPowered a machine:PowerSource ;
+    rdfs:label "Battery Powered"@en, "Batteridrevet"@no ;
+    rdfs:comment "Powered by rechargeable battery"@en .
+
+machine:Manual a machine:PowerSource ;
+    rdfs:label "Manual"@en, "Manuell"@no ;
+    rdfs:comment "Human powered, no external power source"@en .
+
+# ===================================================================
+# Operational Status Enumeration
+# ===================================================================
+
+machine:OperationalStatus a rdfs:Class ;
+    rdfs:label "Operational Status"@en, "Driftsstatus"@no ;
+    rdfs:comment "Enumeration of operational states for a machine"@en .
+
+machine:Operational a machine:OperationalStatus ;
+    rdfs:label "Operational"@en, "I drift"@no ;
+    rdfs:comment "Machine is in working order and operational"@en .
+
+machine:NeedsService a machine:OperationalStatus ;
+    rdfs:label "Needs Service"@en, "Trenger service"@no ;
+    rdfs:comment "Machine is functional but requires maintenance"@en .
+
+machine:Broken a machine:OperationalStatus ;
+    rdfs:label "Broken"@en, "Defekt"@no ;
+    rdfs:comment "Machine is broken and non-functional"@en .
+
+machine:Retired a machine:OperationalStatus ;
+    rdfs:label "Retired"@en, "Pensjonert"@no ;
+    rdfs:comment "Machine has been retired from service"@en .
+
+# ===================================================================
+# Global Categories (non-machine)
+# ===================================================================
+
+machine:Manufacturer a rdfs:Class ;
+    rdfs:label "Manufacturer"@en, "Produsent"@no ;
+    rdfs:comment "Machine manufacturer or supplier"@en .
+
+machine:Model a rdfs:Class ;
+    rdfs:label "Model"@en, "Modell"@no ;
+    rdfs:comment "Specific machine model"@en .
+
+machine:Resource a rdfs:Class ;
+    rdfs:label "Resource"@en, "Ressurs"@no ;
+    rdfs:comment "Material or consumable resource used by a machine"@en .
+
+# ===================================================================
+# Structured property value classes
+# ===================================================================
+
+machine:EmissionEntry a rdfs:Class ;
+    rdfs:label "Emission Entry"@en ;
+    rdfs:comment "A list of per-LCA-module CO2e emission entries (module, amount, unit, certification, source)"@en .
+
+machine:ConsistsOfEntry a rdfs:Class ;
+    rdfs:label "Consists Of Entry"@en ;
+    rdfs:comment "A bill-of-materials list of component category references with amounts (categoryId, amount)"@en .
+
+# ===================================================================
+# Property Definitions - Common
+# ===================================================================
+
+machine:productionDate a rdf:Property ;
+    rdfs:label "Production Date"@en, "Produksjonsdato"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:date .
+
+machine:yearOfManufacture a rdf:Property ;
+    rdfs:label "Year of Manufacture"@en, "Produksjonsår"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:integer .
+
+machine:variant a rdf:Property ;
+    rdfs:label "Variant"@en, "Variant"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:string .
+
+machine:serialNumber a rdf:Property ;
+    rdfs:label "Serial Number"@en, "Serienummer"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:string .
+
+machine:color a rdf:Property ;
+    rdfs:label "Color"@en, "Farge"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:string .
+
+machine:material a rdf:Property ;
+    rdfs:label "Material"@en, "Materiale"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:string .
+
+# ===================================================================
+# Property Definitions - Dimensions and Weight
+# ===================================================================
+
+machine:weight a rdf:Property ;
+    rdfs:label "Weight (kg)"@en, "Vekt (kg)"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:decimal .
+
+machine:length a rdf:Property ;
+    rdfs:label "Length (cm)"@en, "Lengde (cm)"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:decimal .
+
+machine:width a rdf:Property ;
+    rdfs:label "Width (cm)"@en, "Bredde (cm)"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:decimal .
+
+machine:height a rdf:Property ;
+    rdfs:label "Height (cm)"@en, "Høyde (cm)"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:decimal .
+
+machine:volume a rdf:Property ;
+    rdfs:label "Volume (m³)"@en, "Volum (m³)"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:decimal .
+
+# ===================================================================
+# Property Definitions - Machine specific
+# ===================================================================
+
+machine:powerSource a rdf:Property ;
+    rdfs:label "Power Source"@en, "Energikilde"@no ;
+    rdfs:comment "The power source used by the machine"@en ;
+    rdfs:domain machine:Machine ;
+    rdfs:range machine:PowerSource .
+
+machine:powerConsumption a rdf:Property ;
+    rdfs:label "Power Consumption (kW)"@en, "Effektforbruk (kW)"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:decimal .
+
+machine:voltage a rdf:Property ;
+    rdfs:label "Voltage (V)"@en, "Spenning (V)"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:decimal .
+
+machine:maxSpeed a rdf:Property ;
+    rdfs:label "Max Speed (RPM)"@en, "Maks hastighet (RPM)"@no ;
+    rdfs:comment "Maximum rotational speed in revolutions per minute"@en ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:decimal .
+
+machine:operationalStatus a rdf:Property ;
+    rdfs:label "Operational Status"@en, "Driftsstatus"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range machine:OperationalStatus .
+
+machine:operatingHours a rdf:Property ;
+    rdfs:label "Operating Hours"@en, "Driftstimer"@no ;
+    rdfs:comment "Total accumulated operating hours"@en ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:decimal .
+
+# ===================================================================
+# Property Definitions - CNC specific
+# ===================================================================
+
+machine:numberOfAxes a rdf:Property ;
+    rdfs:label "Number of Axes"@en, "Antall akser"@no ;
+    rdfs:comment "Number of controllable axes on a CNC machine"@en ;
+    rdfs:domain machine:CNCMachine ;
+    rdfs:range xsd:integer .
+
+machine:workingAreaLength a rdf:Property ;
+    rdfs:label "Working Area Length (cm)"@en, "Arbeidsområde lengde (cm)"@no ;
+    schema:domainIncludes machine:CNCMachine ;
+    schema:domainIncludes machine:HydraulicSaw ;
+    schema:domainIncludes machine:FabricCuttingMachine ;
+    rdfs:range xsd:decimal .
+
+machine:workingAreaWidth a rdf:Property ;
+    rdfs:label "Working Area Width (cm)"@en, "Arbeidsområde bredde (cm)"@no ;
+    schema:domainIncludes machine:CNCMachine ;
+    schema:domainIncludes machine:HydraulicSaw ;
+    schema:domainIncludes machine:FabricCuttingMachine ;
+    rdfs:range xsd:decimal .
+
+# ===================================================================
+# Property Definitions - Cutting specific
+# ===================================================================
+
+machine:maxCuttingThickness a rdf:Property ;
+    rdfs:label "Max Cutting Thickness (cm)"@en, "Maks skjæretykkelse (cm)"@no ;
+    schema:domainIncludes machine:HydraulicSaw ;
+    schema:domainIncludes machine:CNCMachine ;
+    schema:domainIncludes machine:FabricCuttingMachine ;
+    rdfs:range xsd:decimal .
+
+# ===================================================================
+# Property Definitions - Sewing specific
+# ===================================================================
+
+machine:needleType a rdf:Property ;
+    rdfs:label "Needle Type"@en, "Nåletype"@no ;
+    rdfs:domain machine:SewingMachine ;
+    rdfs:range xsd:string .
+
+machine:stitchTypes a rdf:Property ;
+    rdfs:label "Stitch Types"@en, "Stingtyper"@no ;
+    rdfs:comment "Comma-separated list of supported stitch types"@en ;
+    rdfs:domain machine:SewingMachine ;
+    rdfs:range xsd:string .
+
+# ===================================================================
+# Property Definitions - Documentation and references
+# ===================================================================
+
+machine:operationsAndMaintenanceManual a rdf:Property ;
+    rdfs:label "Operations and Maintenance Manual"@en, "Drift- og vedlikeholdshåndbok"@no ;
+    schema:domainIncludes machine:Machine ;
+    schema:domainIncludes machine:Model ;
+    rdfs:range xsd:anyURI .
+
+machine:model a rdf:Property ;
+    rdfs:label "Model"@en, "Modell"@no ;
+    rdfs:domain machine:Machine ;
+    rdfs:range machine:Model .
+
+# ===================================================================
+# Property Definitions - Manufacturer
+# ===================================================================
+
+machine:address a rdf:Property ;
+    rdfs:label "Address"@en, "Adresse"@no ;
+    rdfs:domain machine:Manufacturer ;
+    rdfs:range xsd:string .
+
+machine:organizationNumber a rdf:Property ;
+    rdfs:label "Organization Number"@en, "Organisasjonsnummer"@no ;
+    rdfs:domain machine:Manufacturer ;
+    rdfs:range xsd:string .
+
+machine:homepage a rdf:Property ;
+    rdfs:label "Homepage"@en, "Hjemmeside"@no ;
+    rdfs:domain machine:Manufacturer ;
+    rdfs:range xsd:anyURI .
+
+machine:manufacturer a rdf:Property ;
+    rdfs:label "Manufacturer"@en, "Produsent"@no ;
+    rdfs:domain machine:Model ;
+    rdfs:range machine:Manufacturer .
+
+machine:machine a rdf:Property ;
+    rdfs:label "Machine Type"@en, "Maskintype"@no ;
+    rdfs:domain machine:Model ;
+    rdfs:range machine:Machine .
+
+# ===================================================================
+# Property Definitions - Sustainability and BoM
+# ===================================================================
+
+machine:emissionPerUnit a rdf:Property ;
+    rdfs:label "Emission per Unit"@en, "Utslipp per enhet"@no ;
+    schema:domainIncludes machine:Machine ;
+    schema:domainIncludes machine:Model ;
+    schema:domainIncludes machine:Resource ;
+    rdfs:range machine:EmissionEntry .
+
+machine:consistsOf a rdf:Property ;
+    rdfs:label "Consists Of"@en, "Består av"@no ;
+    rdfs:comment "Bill of materials: component categories and their amounts"@en ;
+    schema:domainIncludes machine:Machine ;
+    schema:domainIncludes machine:Model ;
+    schema:domainIncludes machine:Resource ;
+    rdfs:range machine:ConsistsOfEntry .
+
+machine:epd a rdf:Property ;
+    rdfs:label "Environmental Product Declaration"@en, "Miljødeklarasjon"@no ;
+    rdfs:domain machine:Model ;
+    rdfs:range xsd:anyURI .
+
+machine:productPage a rdf:Property ;
+    rdfs:label "Product Page"@en, "Produktside"@no ;
+    rdfs:domain machine:Model ;
+    rdfs:range xsd:anyURI .
+
+# ===================================================================
+# Property Definitions - Resource
+# ===================================================================
+
+machine:unit a rdf:Property ;
+    rdfs:label "Unit"@en, "Enhet"@no ;
+    rdfs:domain machine:Resource ;
+    rdfs:range xsd:string .
+
+machine:resourceType a rdf:Property ;
+    rdfs:label "Resource Type"@en, "Ressurstype"@no ;
+    rdfs:domain machine:Resource ;
+    rdfs:range xsd:string .
