@@ -135,18 +135,6 @@ machine:Retired a machine:OperationalStatus ;
     rdfs:comment "Machine has been retired from service"@en .
 
 # ===================================================================
-# Structured property value classes
-# ===================================================================
-
-machine:EmissionEntry a rdfs:Class ;
-    rdfs:label "Emission Entry"@en ;
-    rdfs:comment "A list of per-LCA-module CO2e emission entries (module, amount, unit, certification, source)"@en .
-
-machine:ConsistsOfEntry a rdfs:Class ;
-    rdfs:label "Consists Of Entry"@en ;
-    rdfs:comment "A bill-of-materials list of component category references with amounts (categoryId, amount)"@en .
-
-# ===================================================================
 # Property Definitions - Common
 # ===================================================================
 
