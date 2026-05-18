@@ -1,11 +1,15 @@
 # Machine Taxonomy Base Schema in RDF-S (Turtle format)
 
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix schema: <https://schema.org/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema:  <https://schema.org/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
 @prefix machine: <http://taxonomy.sirktek.no/machine#> .
+# v3.0: machine:manufacturer and machine:model now reference the
+# cross-cutting common:Manufacturer / common:Model classes from
+# common-taxonomy, resolved at merge time.
+@prefix common:  <http://taxonomy.sirktek.no/common#> .
 
 # ===================================================================
 # Root Machine Class
@@ -292,9 +296,9 @@ machine:operationsAndMaintenanceManual a rdf:Property ;
 machine:model a rdf:Property ;
     rdfs:label "Model"@en, "Modell"@no ;
     rdfs:domain machine:Machine ;
-    rdfs:range xsd:string .
+    rdfs:range common:Model .
 
 machine:manufacturer a rdf:Property ;
     rdfs:label "Manufacturer"@en, "Produsent"@no ;
     rdfs:domain machine:Machine ;
-    rdfs:range xsd:string .
+    rdfs:range common:Manufacturer .

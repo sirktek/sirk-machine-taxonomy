@@ -19,8 +19,8 @@ public class MachinePropertyDefinition {
         }
 
         return switch (rangeType) {
-            case "http://taxonomy.sirktek.no/machine#EmissionEntry"     -> PropertyType.EMISSION;
-            case "http://taxonomy.sirktek.no/machine#ConsistsOfEntry"   -> PropertyType.CONSISTS_OF;
+            // EmissionEntry/ConsistsOfEntry moved to common-taxonomy in v3.0;
+            // resolved by CommonPropertyDefinition instead.
             case "http://taxonomy.sirktek.no/machine#PowerSource"       -> PropertyType.POWER_SOURCE;
             case "http://taxonomy.sirktek.no/machine#OperationalStatus" -> PropertyType.OPERATIONAL_STATUS;
             case "http://www.w3.org/2001/XMLSchema#string" -> {
@@ -114,10 +114,8 @@ public class MachinePropertyDefinition {
         /** Power source enumeration property type */
         POWER_SOURCE,
         /** Operational status enumeration property type */
-        OPERATIONAL_STATUS,
-        /** Emission property type */
-        EMISSION,
-        /** Bill of materials (consists-of) property type */
-        CONSISTS_OF
+        OPERATIONAL_STATUS
+        // EMISSION and CONSISTS_OF moved to CommonPropertyDefinition.PropertyType
+        // in v3.0 — those ranges are now common:EmissionEntry / common:ConsistsOfEntry.
     }
 }

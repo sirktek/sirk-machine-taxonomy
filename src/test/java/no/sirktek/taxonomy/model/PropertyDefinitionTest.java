@@ -247,23 +247,46 @@ class PropertyDefinitionTest {
     }
 
     @Test
-    void shouldDetectEmissionPropertyType() {
-        PropertyDefinition property = PropertyDefinition.builder()
+    void shouldNotResolveCommonRangeMarkersToMachinePropertyType() {
+        // EmissionEntry / ConsistsOfEntry are owned by CommonPropertyDefinition
+        // in v3.0 — MachinePropertyDefinition must not recognize them. They
+        // don't match the Manufacturer/Machine/Model substring fallback, so
+        // they fall through to STRING. The orgadmin backend routes the URI
+        // to CommonPropertyDefinition instead.
+        PropertyDefinition emissionProp = PropertyDefinition.builder()
                 .name("emissionPerUnit")
-                .rangeType("http://taxonomy.sirktek.no/machine#EmissionEntry")
+                .rangeType("http://taxonomy.sirktek.no/common#EmissionEntry")
+                .build();
+        PropertyDefinition consistsOfProp = PropertyDefinition.builder()
+                .name("consistsOf")
+                .rangeType("http://taxonomy.sirktek.no/common#ConsistsOfEntry")
                 .build();
 
-        assertEquals(PropertyType.EMISSION, getPropertyType(property));
+        assertEquals(PropertyType.STRING, getPropertyType(emissionProp));
+        assertEquals(PropertyType.STRING, getPropertyType(consistsOfProp));
     }
 
     @Test
-    void shouldDetectConsistsOfPropertyType() {
-        PropertyDefinition property = PropertyDefinition.builder()
-                .name("consistsOf")
-                .rangeType("http://taxonomy.sirktek.no/machine#ConsistsOfEntry")
+    void shouldDetectCommonCategoryReferences() {
+        // common:Manufacturer and common:Model resolve to CATEGORY via the
+        // namespace-agnostic substring fallback, the same as
+        // machine:Machine.
+        PropertyDefinition manufacturerProp = PropertyDefinition.builder()
+                .name("manufacturer")
+                .rangeType("http://taxonomy.sirktek.no/common#Manufacturer")
+                .build();
+        PropertyDefinition modelProp = PropertyDefinition.builder()
+                .name("model")
+                .rangeType("http://taxonomy.sirktek.no/common#Model")
+                .build();
+        PropertyDefinition machineProp = PropertyDefinition.builder()
+                .name("machineType")
+                .rangeType("http://taxonomy.sirktek.no/machine#Machine")
                 .build();
 
-        assertEquals(PropertyType.CONSISTS_OF, getPropertyType(property));
+        assertEquals(PropertyType.CATEGORY, getPropertyType(manufacturerProp));
+        assertEquals(PropertyType.CATEGORY, getPropertyType(modelProp));
+        assertEquals(PropertyType.CATEGORY, getPropertyType(machineProp));
     }
 
     @Test
@@ -308,9 +331,10 @@ class PropertyDefinitionTest {
 
     @Test
     void shouldTestAllPropertyTypeEnumValues() {
+        // v3.0: EMISSION and CONSISTS_OF moved to CommonPropertyDefinition.
         PropertyType[] allTypes = PropertyType.values();
 
-        assertEquals(25, allTypes.length);
+        assertEquals(23, allTypes.length);
 
         assertNotNull(PropertyType.valueOf("STRING"));
         assertNotNull(PropertyType.valueOf("DECIMAL"));
@@ -335,7 +359,5 @@ class PropertyDefinitionTest {
         assertNotNull(PropertyType.valueOf("RESOURCE_TYPE"));
         assertNotNull(PropertyType.valueOf("POWER_SOURCE"));
         assertNotNull(PropertyType.valueOf("OPERATIONAL_STATUS"));
-        assertNotNull(PropertyType.valueOf("EMISSION"));
-        assertNotNull(PropertyType.valueOf("CONSISTS_OF"));
     }
 }
