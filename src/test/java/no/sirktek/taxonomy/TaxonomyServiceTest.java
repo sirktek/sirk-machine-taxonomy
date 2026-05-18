@@ -74,9 +74,8 @@ class TaxonomyServiceTest {
         assertTrue(stats.totalCategories() > 0);
         assertTrue(stats.rootCategories() > 0);
 
-        // We expect multiple root categories (Machine, Manufacturer, Model, Resource,
-        // PowerSource, OperationalStatus)
-        assertTrue(stats.rootCategories() >= 4);
+        // We expect multiple root categories (Machine, PowerSource, OperationalStatus)
+        assertTrue(stats.rootCategories() >= 3);
 
         // Total categories should be more than root categories due to hierarchy
         assertTrue(stats.totalCategories() > stats.rootCategories());
