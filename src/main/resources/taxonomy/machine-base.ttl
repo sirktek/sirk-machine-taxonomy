@@ -26,7 +26,7 @@ machine:Machine a rdfs:Class ;
 
 machine:WoodshopMachine a rdfs:Class ;
     rdfs:subClassOf machine:Machine ;
-    rdfs:label "Woodshop Machine"@en, "Snekkermaskin"@no ;
+    rdfs:label "Woodshop Machine"@en, "Trebearbeiding"@no ;
     rdfs:comment "Machines used in a woodshop or carpentry workshop"@en .
 
 machine:TextileMachine a rdfs:Class ;
