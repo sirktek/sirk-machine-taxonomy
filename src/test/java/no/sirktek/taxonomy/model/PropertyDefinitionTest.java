@@ -157,7 +157,7 @@ class PropertyDefinitionTest {
     @Test
     void shouldDetectDatePropertyType() {
         PropertyDefinition property = PropertyDefinition.builder()
-                .name("productionDate")
+                .name("someDate")
                 .rangeType("http://www.w3.org/2001/XMLSchema#date")
                 .build();
 

@@ -142,11 +142,6 @@ machine:Retired a machine:OperationalStatus ;
 # Property Definitions - Common
 # ===================================================================
 
-machine:productionDate a rdf:Property ;
-    rdfs:label "Production Date"@en, "Produksjonsdato"@no ;
-    rdfs:domain machine:Machine ;
-    rdfs:range xsd:date .
-
 machine:yearOfManufacture a rdf:Property ;
     rdfs:label "Year of Manufacture"@en, "Produksjonsår"@no ;
     rdfs:domain machine:Machine ;
