@@ -302,3 +302,13 @@ machine:manufacturer a rdf:Property ;
     rdfs:label "Manufacturer"@en, "Produsent"@no ;
     rdfs:domain machine:Machine ;
     rdfs:range common:Manufacturer .
+
+# ===================================================================
+# Cross-cutting property domain extensions
+#
+# Opt machine:Machine into common cross-cutting properties by extending
+# their domain with an additional schema:domainIncludes triple. The
+# property and its range marker live in common-taxonomy.
+# ===================================================================
+
+common:assetValue schema:domainIncludes machine:Machine .
