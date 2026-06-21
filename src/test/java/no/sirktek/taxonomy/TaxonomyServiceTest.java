@@ -71,6 +71,25 @@ class TaxonomyServiceTest {
     }
 
     @Test
+    void woodshopMachineGroupsContainTheirMembers() {
+        // Functional groupings and the leaves reparented under them.
+        assertEquals("Saw", taxonomyService.getCategoryByClassName("PanelSaw").orElseThrow().parentClassName());
+        assertEquals("Saw", taxonomyService.getCategoryByClassName("BenchSaw").orElseThrow().parentClassName());
+        assertEquals("Saw", taxonomyService.getCategoryByClassName("HydraulicSaw").orElseThrow().parentClassName());
+        assertEquals("MillingMachine", taxonomyService.getCategoryByClassName("CNCMachine").orElseThrow().parentClassName());
+        assertEquals("MillingMachine", taxonomyService.getCategoryByClassName("SpindleMoulder").orElseThrow().parentClassName());
+        assertEquals("MillingMachine", taxonomyService.getCategoryByClassName("BiscuitJointer").orElseThrow().parentClassName());
+        assertEquals("Sander", taxonomyService.getCategoryByClassName("WideBeltSander").orElseThrow().parentClassName());
+        assertEquals("EdgeMachine", taxonomyService.getCategoryByClassName("EdgeBander").orElseThrow().parentClassName());
+        assertEquals("EdgeMachine", taxonomyService.getCategoryByClassName("EdgeTrimmer").orElseThrow().parentClassName());
+        // Group classes themselves sit under WoodshopMachine.
+        for (String group : new String[]{"Saw", "MillingMachine", "Sander", "EdgeMachine", "Press"}) {
+            assertEquals("WoodshopMachine", taxonomyService.getCategoryByClassName(group).orElseThrow().parentClassName(),
+                    group + " should be a WoodshopMachine group");
+        }
+    }
+
+    @Test
     void shouldFindPressSubcategories() {
         assertTrue(taxonomyService.getCategoryByClassName("CaseClamp").isPresent());
         assertTrue(taxonomyService.getCategoryByClassName("GluePress").isPresent());

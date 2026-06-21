@@ -40,7 +40,41 @@ machine:ITEquipment a rdfs:Class ;
     rdfs:comment "Computers, networking and other information-technology equipment"@en .
 
 # ===================================================================
-# Level 2 Categories - Woodshop Machines
+# Level 2 Categories - Woodshop Machine Groups
+# Functional groupings of woodshop machines. Specific machine types are
+# defined as level-3 subclasses below.
+# ===================================================================
+
+machine:Saw a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Saw"@en, "Sag"@no ;
+    rdfs:comment "Sawing machines for cutting wood and panels (panel saws, bench/circular saws, etc.)"@en .
+
+machine:MillingMachine a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Milling Machine"@en, "Fres"@no ;
+    skos:altLabel "Router"@en, "Moulder"@en ;
+    rdfs:comment "Milling, routing and moulding machines, including CNC routers, spindle moulders and biscuit/lamello jointers"@en .
+
+machine:Sander a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Sander"@en, "Pussemaskin"@no ;
+    skos:altLabel "Sliper"@no ;
+    rdfs:comment "Sanding and finishing machines (wide-belt sanders, etc.)"@en .
+
+machine:Press a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Press"@en, "Presse"@no ;
+    rdfs:comment "Woodworking press for gluing, veneering or clamping assemblies"@en .
+
+machine:EdgeMachine a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Edge Machine"@en, "Kantmaskin"@no ;
+    skos:altLabel "Edge Processing Machine"@en ;
+    rdfs:comment "Edge-processing machines: edge banders and edge trimmers"@en .
+
+# ===================================================================
+# Level 2 Categories - Woodshop Machines (ungrouped)
 # ===================================================================
 
 machine:HandheldTool a rdfs:Class ;
@@ -49,69 +83,11 @@ machine:HandheldTool a rdfs:Class ;
     skos:altLabel "Power Tool"@en ;
     rdfs:comment "Portable, hand-operated powered tools (drills, sanders, jigsaws, etc.)"@en .
 
-machine:CNCMachine a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "CNC Machine"@en, "CNC-maskin"@no ;
-    skos:altLabel "Computer Numerical Control Machine"@en ;
-    rdfs:comment "Computer numerical control machine for automated cutting, milling, or routing"@en .
-
-machine:HydraulicSaw a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "Hydraulic Saw"@en, "Hydraulisk sag"@no ;
-    rdfs:comment "Hydraulically-driven saw for cutting wood or other materials"@en .
-
-machine:PanelSaw a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "Panel Saw"@en, "Formatsag"@no ;
-    skos:altLabel "Sliding Table Saw"@en, "Skyvebordsag"@no ;
-    rdfs:comment "Sliding-table circular saw for accurate sizing of panels and solid wood (e.g. Martin formatsag T60)"@en .
-
-machine:BenchSaw a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "Bench Saw"@en, "Bordsag"@no ;
-    skos:altLabel "Table Circular Saw"@en, "Bordsirkelsag"@no ;
-    rdfs:comment "Fixed-table circular saw for ripping and crosscutting stock (e.g. Lazzari CS-41)"@en .
-
-machine:SpindleMoulder a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "Spindle Moulder"@en, "Toppfres"@no ;
-    skos:altLabel "Shaper"@en, "Fresemaskin"@no, "Spindelfres"@no ;
-    rdfs:comment "Vertical-spindle moulder for profiling edges, grooves and tenons (e.g. Lazzari Base 45)"@en .
-
-machine:BiscuitJointer a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "Biscuit Jointer"@en, "Lamellfres"@no ;
-    skos:altLabel "Lamello Jointer"@en ;
-    rdfs:comment "Mills crescent-shaped grooves for flat biscuit (lamello) joints; may be a custom/special machine"@en .
-
-machine:WideBeltSander a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "Wide-Belt Sander"@en, "Bredbåndspusser"@no ;
-    skos:altLabel "Bredbåndssliper"@no ;
-    rdfs:comment "Through-feed wide-belt sander for calibrating and finishing panels and solid wood (e.g. SCM DMC SD 60)"@en .
-
-machine:EdgeBander a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "Edge Banding Machine"@en, "Kantlimer"@no ;
-    skos:altLabel "Edgebander"@en, "Kantlister"@no ;
-    rdfs:comment "Applies edge tape/banding to panel edges with hot-melt or PUR glue (e.g. Felder G 380, Format-4 Tempora 45.03, SCM Minimax E10)"@en .
-
-machine:EdgeTrimmer a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "Edge Trimmer"@en, "Kanttrimmer"@no ;
-    skos:altLabel "Kantfresemaskin"@no ;
-    rdfs:comment "Flush/bevel-trims shaped panel edges as an edge-finishing step (e.g. SCM Minimax T20)"@en .
-
 machine:PlanerThicknesser a rdfs:Class ;
     rdfs:subClassOf machine:WoodshopMachine ;
     rdfs:label "Combined Planer-Thicknesser"@en, "Avretter-/tykkelseshøvel"@no ;
     skos:altLabel "Jointer-Planer"@en, "Kombihøvel"@no ;
     rdfs:comment "Combined surface planer (jointer) and thickness planer in one body (e.g. SD 410)"@en .
-
-machine:Press a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "Press"@en, "Presse"@no ;
-    rdfs:comment "Woodworking press for gluing, veneering or clamping assemblies"@en .
 
 machine:VacuumLifter a rdfs:Class ;
     rdfs:subClassOf machine:WoodshopMachine ;
@@ -126,7 +102,76 @@ machine:SprayEquipment a rdfs:Class ;
     rdfs:comment "Spray gun / spray finishing equipment for applying lacquer or paint to surfaces"@en .
 
 # ===================================================================
-# Level 3 Categories - CNC Machines
+# Level 3 Categories - Saws (Sag)
+# ===================================================================
+
+machine:HydraulicSaw a rdfs:Class ;
+    rdfs:subClassOf machine:Saw ;
+    rdfs:label "Hydraulic Saw"@en, "Hydraulisk sag"@no ;
+    rdfs:comment "Hydraulically-driven saw for cutting wood or other materials"@en .
+
+machine:PanelSaw a rdfs:Class ;
+    rdfs:subClassOf machine:Saw ;
+    rdfs:label "Panel Saw"@en, "Formatsag"@no ;
+    skos:altLabel "Sliding Table Saw"@en, "Skyvebordsag"@no ;
+    rdfs:comment "Sliding-table circular saw for accurate sizing of panels and solid wood (e.g. Martin formatsag T60)"@en .
+
+machine:BenchSaw a rdfs:Class ;
+    rdfs:subClassOf machine:Saw ;
+    rdfs:label "Bench Saw"@en, "Bordsag"@no ;
+    skos:altLabel "Table Circular Saw"@en, "Bordsirkelsag"@no ;
+    rdfs:comment "Fixed-table circular saw for ripping and crosscutting stock (e.g. Lazzari CS-41)"@en .
+
+# ===================================================================
+# Level 3 Categories - Milling machines (Fres)
+# ===================================================================
+
+machine:CNCMachine a rdfs:Class ;
+    rdfs:subClassOf machine:MillingMachine ;
+    rdfs:label "CNC Machine"@en, "CNC-maskin"@no ;
+    skos:altLabel "Computer Numerical Control Machine"@en ;
+    rdfs:comment "Computer numerical control machine for automated cutting, milling, or routing"@en .
+
+machine:SpindleMoulder a rdfs:Class ;
+    rdfs:subClassOf machine:MillingMachine ;
+    rdfs:label "Spindle Moulder"@en, "Toppfres"@no ;
+    skos:altLabel "Shaper"@en, "Fresemaskin"@no, "Spindelfres"@no ;
+    rdfs:comment "Vertical-spindle moulder for profiling edges, grooves and tenons (e.g. Lazzari Base 45)"@en .
+
+machine:BiscuitJointer a rdfs:Class ;
+    rdfs:subClassOf machine:MillingMachine ;
+    rdfs:label "Biscuit Jointer"@en, "Lamellfres"@no ;
+    skos:altLabel "Lamello Jointer"@en ;
+    rdfs:comment "Mills crescent-shaped grooves for flat biscuit (lamello) joints; may be a custom/special machine"@en .
+
+# ===================================================================
+# Level 3 Categories - Sanders (Pussemaskin)
+# ===================================================================
+
+machine:WideBeltSander a rdfs:Class ;
+    rdfs:subClassOf machine:Sander ;
+    rdfs:label "Wide-Belt Sander"@en, "Bredbåndspusser"@no ;
+    skos:altLabel "Bredbåndssliper"@no ;
+    rdfs:comment "Through-feed wide-belt sander for calibrating and finishing panels and solid wood (e.g. SCM DMC SD 60)"@en .
+
+# ===================================================================
+# Level 3 Categories - Edge machines (Kantmaskin)
+# ===================================================================
+
+machine:EdgeBander a rdfs:Class ;
+    rdfs:subClassOf machine:EdgeMachine ;
+    rdfs:label "Edge Banding Machine"@en, "Kantlimer"@no ;
+    skos:altLabel "Edgebander"@en, "Kantlister"@no ;
+    rdfs:comment "Applies edge tape/banding to panel edges with hot-melt or PUR glue (e.g. Felder G 380, Format-4 Tempora 45.03, SCM Minimax E10)"@en .
+
+machine:EdgeTrimmer a rdfs:Class ;
+    rdfs:subClassOf machine:EdgeMachine ;
+    rdfs:label "Edge Trimmer"@en, "Kanttrimmer"@no ;
+    skos:altLabel "Kantfresemaskin"@no ;
+    rdfs:comment "Flush/bevel-trims shaped panel edges as an edge-finishing step (e.g. SCM Minimax T20)"@en .
+
+# ===================================================================
+# Level 4 Categories - CNC Machines
 # ===================================================================
 
 machine:TwoAxisCNCMachine a rdfs:Class ;
