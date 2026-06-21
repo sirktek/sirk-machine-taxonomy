@@ -96,13 +96,6 @@ class TaxonomyServiceTest {
     }
 
     @Test
-    void shouldFindITEquipmentAndSubcategories() {
-        assertTrue(taxonomyService.getCategoryByClassName("ITEquipment").isPresent());
-        assertTrue(taxonomyService.getCategoryByClassName("PC").isPresent());
-        assertTrue(taxonomyService.getCategoryByClassName("Network").isPresent());
-    }
-
-    @Test
     void shouldReturnEmptyForNonExistentCategory() {
         Optional<CategoryInfo> nonExistent = taxonomyService.getCategoryByClassName("NonExistent");
 

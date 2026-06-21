@@ -34,11 +34,6 @@ machine:TextileMachine a rdfs:Class ;
     rdfs:label "Textile Machine"@en, "Tekstilmaskin"@no ;
     rdfs:comment "Machines used for working with textiles and fabrics"@en .
 
-machine:ITEquipment a rdfs:Class ;
-    rdfs:subClassOf machine:Machine ;
-    rdfs:label "IT Equipment"@en, "IT-utstyr"@no ;
-    rdfs:comment "Computers, networking and other information-technology equipment"@en .
-
 # ===================================================================
 # Level 2 Categories - Woodshop Machine Groups
 # Functional groupings of woodshop machines. Specific machine types are
@@ -201,22 +196,6 @@ machine:GluePress a rdfs:Class ;
     rdfs:label "Glue Press"@en, "Limpresse"@no ;
     skos:altLabel "Veneer Press"@en, "Finerpresse"@no ;
     rdfs:comment "Hydraulic platen press for pressing veneer and gluing/clamping panels under pressure (e.g. Höfer HP 65 S)"@en .
-
-# ===================================================================
-# Level 2 Categories - IT Equipment
-# ===================================================================
-
-machine:PC a rdfs:Class ;
-    rdfs:subClassOf machine:ITEquipment ;
-    rdfs:label "PC"@en, "PC"@no ;
-    skos:altLabel "Personal Computer"@en, "Datamaskin"@no ;
-    rdfs:comment "Personal computer — desktop or laptop workstation"@en .
-
-machine:Network a rdfs:Class ;
-    rdfs:subClassOf machine:ITEquipment ;
-    rdfs:label "Network Equipment"@en, "Nettverksutstyr"@no ;
-    skos:altLabel "Networking Equipment"@en ;
-    rdfs:comment "Networking equipment such as routers, switches, access points and firewalls"@en .
 
 # ===================================================================
 # Level 2 Categories - Textile Machines
