@@ -34,6 +34,11 @@ machine:TextileMachine a rdfs:Class ;
     rdfs:label "Textile Machine"@en, "Tekstilmaskin"@no ;
     rdfs:comment "Machines used for working with textiles and fabrics"@en .
 
+machine:ITEquipment a rdfs:Class ;
+    rdfs:subClassOf machine:Machine ;
+    rdfs:label "IT Equipment"@en, "IT-utstyr"@no ;
+    rdfs:comment "Computers, networking and other information-technology equipment"@en .
+
 # ===================================================================
 # Level 2 Categories - Woodshop Machines
 # ===================================================================
@@ -55,6 +60,71 @@ machine:HydraulicSaw a rdfs:Class ;
     rdfs:label "Hydraulic Saw"@en, "Hydraulisk sag"@no ;
     rdfs:comment "Hydraulically-driven saw for cutting wood or other materials"@en .
 
+machine:PanelSaw a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Panel Saw"@en, "Formatsag"@no ;
+    skos:altLabel "Sliding Table Saw"@en, "Skyvebordsag"@no ;
+    rdfs:comment "Sliding-table circular saw for accurate sizing of panels and solid wood (e.g. Martin formatsag T60)"@en .
+
+machine:BenchSaw a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Bench Saw"@en, "Bordsag"@no ;
+    skos:altLabel "Table Circular Saw"@en, "Bordsirkelsag"@no ;
+    rdfs:comment "Fixed-table circular saw for ripping and crosscutting stock (e.g. Lazzari CS-41)"@en .
+
+machine:SpindleMoulder a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Spindle Moulder"@en, "Toppfres"@no ;
+    skos:altLabel "Shaper"@en, "Fresemaskin"@no, "Spindelfres"@no ;
+    rdfs:comment "Vertical-spindle moulder for profiling edges, grooves and tenons (e.g. Lazzari Base 45)"@en .
+
+machine:BiscuitJointer a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Biscuit Jointer"@en, "Lamellfres"@no ;
+    skos:altLabel "Lamello Jointer"@en ;
+    rdfs:comment "Mills crescent-shaped grooves for flat biscuit (lamello) joints; may be a custom/special machine"@en .
+
+machine:WideBeltSander a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Wide-Belt Sander"@en, "Bredbåndspusser"@no ;
+    skos:altLabel "Bredbåndssliper"@no ;
+    rdfs:comment "Through-feed wide-belt sander for calibrating and finishing panels and solid wood (e.g. SCM DMC SD 60)"@en .
+
+machine:EdgeBander a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Edge Banding Machine"@en, "Kantlimer"@no ;
+    skos:altLabel "Edgebander"@en, "Kantlister"@no ;
+    rdfs:comment "Applies edge tape/banding to panel edges with hot-melt or PUR glue (e.g. Felder G 380, Format-4 Tempora 45.03, SCM Minimax E10)"@en .
+
+machine:EdgeTrimmer a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Edge Trimmer"@en, "Kanttrimmer"@no ;
+    skos:altLabel "Kantfresemaskin"@no ;
+    rdfs:comment "Flush/bevel-trims shaped panel edges as an edge-finishing step (e.g. SCM Minimax T20)"@en .
+
+machine:PlanerThicknesser a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Combined Planer-Thicknesser"@en, "Avretter-/tykkelseshøvel"@no ;
+    skos:altLabel "Jointer-Planer"@en, "Kombihøvel"@no ;
+    rdfs:comment "Combined surface planer (jointer) and thickness planer in one body (e.g. SD 410)"@en .
+
+machine:Press a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Press"@en, "Presse"@no ;
+    rdfs:comment "Woodworking press for gluing, veneering or clamping assemblies"@en .
+
+machine:VacuumLifter a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Vacuum Lifter"@en, "Vakuumløfter"@no ;
+    skos:altLabel "Vacuum Panel Lifter"@en, "Vakumløfter"@no ;
+    rdfs:comment "Vacuum-powered lifting aid for handling large flat workpieces such as panels and sheets"@en .
+
+machine:SprayEquipment a rdfs:Class ;
+    rdfs:subClassOf machine:WoodshopMachine ;
+    rdfs:label "Spray Finishing Equipment"@en, "Lakkeringsutstyr"@no ;
+    skos:altLabel "Spray Gun"@en, "Lakksprøyte"@no ;
+    rdfs:comment "Spray gun / spray finishing equipment for applying lacquer or paint to surfaces"@en .
+
 # ===================================================================
 # Level 3 Categories - CNC Machines
 # ===================================================================
@@ -70,6 +140,38 @@ machine:FiveAxisCNCMachine a rdfs:Class ;
     rdfs:label "5-Axis CNC Machine"@en, "5-akset CNC-maskin"@no ;
     skos:altLabel "Five Axis CNC"@en ;
     rdfs:comment "CNC machine with five controllable axes (X, Y, Z plus two rotational)"@en .
+
+# ===================================================================
+# Level 3 Categories - Presses
+# ===================================================================
+
+machine:CaseClamp a rdfs:Class ;
+    rdfs:subClassOf machine:Press ;
+    rdfs:label "Case Clamp"@en, "Skrogpresse"@no ;
+    skos:altLabel "Carcase Press"@en, "Korpuspresse"@no ;
+    rdfs:comment "Electro-mechanical clamp that squares and glue-clamps assembled cabinet carcases (e.g. Bonacin Nina)"@en .
+
+machine:GluePress a rdfs:Class ;
+    rdfs:subClassOf machine:Press ;
+    rdfs:label "Glue Press"@en, "Limpresse"@no ;
+    skos:altLabel "Veneer Press"@en, "Finerpresse"@no ;
+    rdfs:comment "Hydraulic platen press for pressing veneer and gluing/clamping panels under pressure (e.g. Höfer HP 65 S)"@en .
+
+# ===================================================================
+# Level 2 Categories - IT Equipment
+# ===================================================================
+
+machine:PC a rdfs:Class ;
+    rdfs:subClassOf machine:ITEquipment ;
+    rdfs:label "PC"@en, "PC"@no ;
+    skos:altLabel "Personal Computer"@en, "Datamaskin"@no ;
+    rdfs:comment "Personal computer — desktop or laptop workstation"@en .
+
+machine:Network a rdfs:Class ;
+    rdfs:subClassOf machine:ITEquipment ;
+    rdfs:label "Network Equipment"@en, "Nettverksutstyr"@no ;
+    skos:altLabel "Networking Equipment"@en ;
+    rdfs:comment "Networking equipment such as routers, switches, access points and firewalls"@en .
 
 # ===================================================================
 # Level 2 Categories - Textile Machines

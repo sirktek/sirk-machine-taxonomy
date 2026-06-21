@@ -61,6 +61,29 @@ class TaxonomyServiceTest {
     }
 
     @Test
+    void shouldFindWoodshopMachineSubcategories() {
+        for (String className : new String[]{
+                "PanelSaw", "BenchSaw", "SpindleMoulder", "BiscuitJointer", "WideBeltSander",
+                "EdgeBander", "EdgeTrimmer", "PlanerThicknesser", "Press", "VacuumLifter", "SprayEquipment"}) {
+            assertTrue(taxonomyService.getCategoryByClassName(className).isPresent(),
+                    "Expected WoodshopMachine subcategory present: " + className);
+        }
+    }
+
+    @Test
+    void shouldFindPressSubcategories() {
+        assertTrue(taxonomyService.getCategoryByClassName("CaseClamp").isPresent());
+        assertTrue(taxonomyService.getCategoryByClassName("GluePress").isPresent());
+    }
+
+    @Test
+    void shouldFindITEquipmentAndSubcategories() {
+        assertTrue(taxonomyService.getCategoryByClassName("ITEquipment").isPresent());
+        assertTrue(taxonomyService.getCategoryByClassName("PC").isPresent());
+        assertTrue(taxonomyService.getCategoryByClassName("Network").isPresent());
+    }
+
+    @Test
     void shouldReturnEmptyForNonExistentCategory() {
         Optional<CategoryInfo> nonExistent = taxonomyService.getCategoryByClassName("NonExistent");
 
