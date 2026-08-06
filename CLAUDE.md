@@ -53,7 +53,8 @@ mvn test -Dtest=TaxonomyServiceTest#shouldLoadBaseTaxonomy
 
 ### Key Files
 - `/src/main/resources/taxonomy/machine-base.ttl` - RDF-S taxonomy definition
-  - Defines `Machine` root class with level-1 domain groupings (`WoodshopMachine`, `TextileMachine`)
+  - Defines `Machine` root class with level-1 groupings (`WoodshopMachine`, `TextileMachine`, `MaterialsHandlingEquipment`, `ExtractionSystem`)
+  - `MaterialsHandlingEquipment` and `ExtractionSystem` are domain-independent: equipment that moves loads or extracts chips/dust/fumes belongs there regardless of the workshop it sits in
   - Initial leaf classes: `HandheldTool`, `CNCMachine` (`TwoAxisCNCMachine`, `FiveAxisCNCMachine`), `HydraulicSaw`, `SewingMachine`, `FabricCuttingMachine`
   - Enumerations: `PowerSource`, `OperationalStatus`
   - Global classes: `Manufacturer`, `Model`, `Resource`
@@ -82,7 +83,7 @@ mvn test -Dtest=TaxonomyServiceTest#shouldLoadBaseTaxonomy
 - Frontend handles translation - Java library only provides English class names
 
 ### Extending the Taxonomy
-- Additional level-1 domain groupings (e.g. `Computer`, `LabEquipment`) should be added as direct subclasses of `Machine` next to `WoodshopMachine` and `TextileMachine`.
+- Additional level-1 groupings (e.g. `LabEquipment`) should be added as direct subclasses of `Machine` next to the existing four.
 - New leaf categories belong under the appropriate level-1 grouping.
 - When introducing new property types (e.g. new units), add the enum value to `MachinePropertyDefinition.PropertyType` and the detection logic in `getPropertyType`, then update the enum count assertion in `PropertyDefinitionTest`.
 

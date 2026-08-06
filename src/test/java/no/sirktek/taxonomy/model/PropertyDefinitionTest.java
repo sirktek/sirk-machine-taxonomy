@@ -67,6 +67,26 @@ class PropertyDefinitionTest {
     }
 
     @Test
+    void shouldDetectDecimalKgForCamelCaseWeightProperty() {
+        PropertyDefinition property = PropertyDefinition.builder()
+                .name("maxLoadWeight")
+                .rangeType("http://www.w3.org/2001/XMLSchema#decimal")
+                .build();
+
+        assertEquals(PropertyType.DECIMAL_KG, getPropertyType(property));
+    }
+
+    @Test
+    void shouldDetectDecimalM3HPropertyType() {
+        PropertyDefinition property = PropertyDefinition.builder()
+                .name("airflow")
+                .rangeType("http://www.w3.org/2001/XMLSchema#decimal")
+                .build();
+
+        assertEquals(PropertyType.DECIMAL_M3H, getPropertyType(property));
+    }
+
+    @Test
     void shouldDetectDecimalM3PropertyType() {
         PropertyDefinition property = PropertyDefinition.builder()
                 .name("volume")
@@ -334,7 +354,7 @@ class PropertyDefinitionTest {
         // v3.0: EMISSION and CONSISTS_OF moved to CommonPropertyDefinition.
         PropertyType[] allTypes = PropertyType.values();
 
-        assertEquals(23, allTypes.length);
+        assertEquals(24, allTypes.length);
 
         assertNotNull(PropertyType.valueOf("STRING"));
         assertNotNull(PropertyType.valueOf("DECIMAL"));
@@ -348,6 +368,7 @@ class PropertyDefinitionTest {
         assertNotNull(PropertyType.valueOf("DECIMAL_KG"));
         assertNotNull(PropertyType.valueOf("DECIMAL_M2"));
         assertNotNull(PropertyType.valueOf("DECIMAL_M3"));
+        assertNotNull(PropertyType.valueOf("DECIMAL_M3H"));
         assertNotNull(PropertyType.valueOf("DECIMAL_KW"));
         assertNotNull(PropertyType.valueOf("DECIMAL_V"));
         assertNotNull(PropertyType.valueOf("DECIMAL_RPM"));

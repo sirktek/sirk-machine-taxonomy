@@ -17,7 +17,7 @@
 
 machine:Machine a rdfs:Class ;
     rdfs:label "Machine"@en, "Maskin"@no ;
-    rdfs:comment "Root class for all machines and powered equipment"@en .
+    rdfs:comment "Root class for all machines and equipment, powered or manually operated"@en .
 
 # ===================================================================
 # Level 1 Categories - Domain Groupings
@@ -33,6 +33,18 @@ machine:TextileMachine a rdfs:Class ;
     rdfs:subClassOf machine:Machine ;
     rdfs:label "Textile Machine"@en, "Tekstilmaskin"@no ;
     rdfs:comment "Machines used for working with textiles and fabrics"@en .
+
+machine:MaterialsHandlingEquipment a rdfs:Class ;
+    rdfs:subClassOf machine:Machine ;
+    rdfs:label "Materials Handling Equipment"@en, "Materialhåndteringsutstyr"@no ;
+    skos:altLabel "Materials Handling"@en, "Internlogistikk"@no ;
+    rdfs:comment "Equipment for lifting, moving and transporting materials and loads rather than processing them; domain-independent"@en .
+
+machine:ExtractionSystem a rdfs:Class ;
+    rdfs:subClassOf machine:Machine ;
+    rdfs:label "Extraction System"@en, "Avsugsanlegg"@no ;
+    skos:altLabel "Extraction Unit"@en, "Avsug"@no ;
+    rdfs:comment "Systems that extract chips, dust or fumes from workstations and machines; domain-independent"@en .
 
 # ===================================================================
 # Level 2 Categories - Woodshop Machine Groups
@@ -83,12 +95,6 @@ machine:PlanerThicknesser a rdfs:Class ;
     rdfs:label "Combined Planer-Thicknesser"@en, "Avretter-/tykkelseshøvel"@no ;
     skos:altLabel "Jointer-Planer"@en, "Kombihøvel"@no ;
     rdfs:comment "Combined surface planer (jointer) and thickness planer in one body (e.g. SD 410)"@en .
-
-machine:VacuumLifter a rdfs:Class ;
-    rdfs:subClassOf machine:WoodshopMachine ;
-    rdfs:label "Vacuum Lifter"@en, "Vakuumløfter"@no ;
-    skos:altLabel "Vacuum Panel Lifter"@en, "Vakumløfter"@no ;
-    rdfs:comment "Vacuum-powered lifting aid for handling large flat workpieces such as panels and sheets"@en .
 
 machine:SprayEquipment a rdfs:Class ;
     rdfs:subClassOf machine:WoodshopMachine ;
@@ -211,6 +217,38 @@ machine:FabricCuttingMachine a rdfs:Class ;
     rdfs:label "Fabric Cutting Machine"@en, "Stoffskjæremaskin"@no ;
     skos:altLabel "Cloth Cutting Machine"@en ;
     rdfs:comment "Machine for cutting fabric, textiles or cloth to size"@en .
+
+# ===================================================================
+# Level 2 Categories - Materials Handling Equipment
+# ===================================================================
+
+machine:PalletTruck a rdfs:Class ;
+    rdfs:subClassOf machine:MaterialsHandlingEquipment ;
+    rdfs:label "Pallet Truck"@en, "Jekketralle"@no ;
+    skos:altLabel "Pallet Jack"@en, "Hand Pallet Truck"@en, "Palleløfter"@no, "Palletralle"@no ;
+    rdfs:comment "Wheeled truck that lifts and moves pallets over short distances; manual, semi-electric or electric"@en .
+
+machine:Forklift a rdfs:Class ;
+    rdfs:subClassOf machine:MaterialsHandlingEquipment ;
+    rdfs:label "Forklift"@en, "Gaffeltruck"@no ;
+    skos:altLabel "Fork Lift Truck"@en, "Counterbalance Truck"@en, "Truck"@no ;
+    rdfs:comment "Ride-on or stand-on truck with forks for lifting, stacking and transporting palletised loads"@en .
+
+machine:VacuumLifter a rdfs:Class ;
+    rdfs:subClassOf machine:MaterialsHandlingEquipment ;
+    rdfs:label "Vacuum Lifter"@en, "Vakuumløfter"@no ;
+    skos:altLabel "Vacuum Panel Lifter"@en ;
+    rdfs:comment "Vacuum-powered lifting aid for handling large flat workpieces such as panels and sheets"@en .
+
+# ===================================================================
+# Level 2 Categories - Extraction Systems
+# ===================================================================
+
+machine:ChipExtractor a rdfs:Class ;
+    rdfs:subClassOf machine:ExtractionSystem ;
+    rdfs:label "Chip Extractor"@en, "Flisavsug"@no ;
+    skos:altLabel "Dust Extractor"@en, "Chip Collector"@en, "Sponavsug"@no, "Støvavsug"@no ;
+    rdfs:comment "Extracts and collects chips, shavings and dust from woodworking machines, typically via ducting to a filter or cyclone unit"@en .
 
 # ===================================================================
 # Power Source Enumeration
@@ -392,6 +430,32 @@ machine:maxCuttingThickness a rdf:Property ;
     schema:domainIncludes machine:HydraulicSaw ;
     schema:domainIncludes machine:CNCMachine ;
     schema:domainIncludes machine:FabricCuttingMachine ;
+    rdfs:range xsd:decimal .
+
+# ===================================================================
+# Property Definitions - Materials handling specific
+# ===================================================================
+
+machine:maxLoadWeight a rdf:Property ;
+    rdfs:label "Max Load (kg)"@en, "Maks last (kg)"@no ;
+    rdfs:comment "Rated lifting capacity of the equipment"@en ;
+    schema:domainIncludes machine:MaterialsHandlingEquipment ;
+    rdfs:range xsd:decimal .
+
+machine:liftHeight a rdf:Property ;
+    rdfs:label "Lift Height (cm)"@en, "Løftehøyde (cm)"@no ;
+    rdfs:comment "Maximum height the load can be raised to"@en ;
+    schema:domainIncludes machine:MaterialsHandlingEquipment ;
+    rdfs:range xsd:decimal .
+
+# ===================================================================
+# Property Definitions - Extraction specific
+# ===================================================================
+
+machine:airflow a rdf:Property ;
+    rdfs:label "Airflow (m³/h)"@en, "Luftmengde (m³/t)"@no ;
+    rdfs:comment "Extraction capacity as volumetric airflow in cubic metres per hour"@en ;
+    schema:domainIncludes machine:ExtractionSystem ;
     rdfs:range xsd:decimal .
 
 # ===================================================================

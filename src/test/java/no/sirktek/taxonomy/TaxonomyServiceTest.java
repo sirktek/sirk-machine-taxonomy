@@ -64,7 +64,7 @@ class TaxonomyServiceTest {
     void shouldFindWoodshopMachineSubcategories() {
         for (String className : new String[]{
                 "PanelSaw", "BenchSaw", "SpindleMoulder", "BiscuitJointer", "WideBeltSander",
-                "EdgeBander", "EdgeTrimmer", "PlanerThicknesser", "Press", "VacuumLifter", "SprayEquipment"}) {
+                "EdgeBander", "EdgeTrimmer", "PlanerThicknesser", "Press", "SprayEquipment"}) {
             assertTrue(taxonomyService.getCategoryByClassName(className).isPresent(),
                     "Expected WoodshopMachine subcategory present: " + className);
         }
@@ -86,6 +86,32 @@ class TaxonomyServiceTest {
         for (String group : new String[]{"Saw", "MillingMachine", "Sander", "EdgeMachine", "Press"}) {
             assertEquals("WoodshopMachine", taxonomyService.getCategoryByClassName(group).orElseThrow().parentClassName(),
                     group + " should be a WoodshopMachine group");
+        }
+    }
+
+    @Test
+    void shouldFindMaterialsHandlingSubcategories() {
+        assertTrue(taxonomyService.getCategoryByClassName("MaterialsHandlingEquipment").isPresent());
+        for (String className : new String[]{"PalletTruck", "Forklift", "VacuumLifter"}) {
+            assertEquals("MaterialsHandlingEquipment",
+                    taxonomyService.getCategoryByClassName(className).orElseThrow().parentClassName(),
+                    className + " should sit under MaterialsHandlingEquipment");
+        }
+    }
+
+    @Test
+    void shouldFindExtractionSystemSubcategories() {
+        assertTrue(taxonomyService.getCategoryByClassName("ExtractionSystem").isPresent());
+        assertEquals("ExtractionSystem",
+                taxonomyService.getCategoryByClassName("ChipExtractor").orElseThrow().parentClassName());
+    }
+
+    @Test
+    void domainGroupingsSitDirectlyUnderMachineRoot() {
+        for (String grouping : new String[]{
+                "WoodshopMachine", "TextileMachine", "MaterialsHandlingEquipment", "ExtractionSystem"}) {
+            assertEquals("Machine", taxonomyService.getCategoryByClassName(grouping).orElseThrow().parentClassName(),
+                    grouping + " should be a level-1 grouping under Machine");
         }
     }
 

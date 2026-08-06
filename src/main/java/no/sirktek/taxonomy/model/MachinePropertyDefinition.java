@@ -32,12 +32,13 @@ public class MachinePropertyDefinition {
             }
             case "http://www.w3.org/2001/XMLSchema#decimal" -> {
                 if (name != null) {
-                    if (name.contains("weight")) yield PropertyType.DECIMAL_KG;
+                    if (name.contains("weight") || name.contains("Weight")) yield PropertyType.DECIMAL_KG;
                     if (name.contains("volume")) yield PropertyType.DECIMAL_M3;
                     if (name.equals("powerConsumption")) yield PropertyType.DECIMAL_KW;
                     if (name.equals("voltage")) yield PropertyType.DECIMAL_V;
                     if (name.equals("maxSpeed")) yield PropertyType.DECIMAL_RPM;
                     if (name.equals("operatingHours")) yield PropertyType.DECIMAL_HOURS;
+                    if (name.equals("airflow")) yield PropertyType.DECIMAL_M3H;
                     if (name.contains("length") || name.contains("width") || name.contains("height")
                             || name.contains("Length") || name.contains("Width") || name.contains("Height")
                             || name.contains("Thickness"))
@@ -93,6 +94,8 @@ public class MachinePropertyDefinition {
         DECIMAL_M2,
         /** Decimal cubic meters property type */
         DECIMAL_M3,
+        /** Decimal cubic meters per hour property type (volumetric airflow) */
+        DECIMAL_M3H,
         /** Decimal kilowatts property type */
         DECIMAL_KW,
         /** Decimal volts property type */
