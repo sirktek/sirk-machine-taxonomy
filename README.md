@@ -84,6 +84,17 @@ Enumerations:
 - **PowerSource**: Electric, Hydraulic, Pneumatic, BatteryPowered, Manual
 - **OperationalStatus**: Operational, NeedsService, Broken, Retired
 
+### Accounting and Tax Properties
+
+`machine:Machine` opts into the cross-cutting accounting properties defined in
+`taxonomy-commons` via `schema:domainIncludes`: `common:ledgerAccount` (Regnskapskonto),
+`common:bookValue` (Bokført verdi), `common:taxValue` (Skattemessig verdi) and
+`common:depreciationGroup` (Saldogruppe, an enumeration whose values are tagged per jurisdiction).
+There is no `common:wealthTaxValue` opt-in: for driftsmidler the formuesverdi equals the tax
+value at year end, so consumers derive it. The definitions and the `DepreciationGroupA`–`J`
+values are documented in the `taxonomy-commons` README. `CommonPropertyOptInTest` pins the
+opt-ins.
+
 ## RDF-S Schema
 
 The taxonomy is defined using RDF-S in Turtle format with:
