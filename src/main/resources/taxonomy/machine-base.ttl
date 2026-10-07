@@ -496,4 +496,15 @@ machine:manufacturer a rdf:Property ;
 # property and its range marker live in common-taxonomy.
 # ===================================================================
 
-common:assetValue schema:domainIncludes machine:Machine .
+# No wealthTaxValue (formuesverdi) opt-in: for driftsmidler the wealth-tax
+# value is by rule the tax written-down value (taxValue) at 31 December,
+# so the consumer derives it rather than storing it.
+
+# Accounting and tax properties (ledger account, per-year book value and
+# tax value, tax depreciation group). Typical group for machines is d (personbiler,
+# maskiner, inventar mv.); j when the machine is a fixed technical
+# installation in a building. Chosen per category/asset by the consumer.
+common:ledgerAccount schema:domainIncludes machine:Machine .
+common:bookValue schema:domainIncludes machine:Machine .
+common:taxValue schema:domainIncludes machine:Machine .
+common:depreciationGroup schema:domainIncludes machine:Machine .
