@@ -331,6 +331,17 @@ machine:material a rdf:Property ;
     rdfs:domain machine:Machine ;
     rdfs:range xsd:string .
 
+# Same local name and value contract as logistics:controlChecklist on
+# logistics:ControlPoint, so a machine is a round point in Vardly and the
+# checklist resolves (asset, then category chain) by the one key
+# "controlChecklist". Declared in the machine namespace because the shared
+# loader only attaches properties from the taxonomy's own namespace.
+machine:controlChecklist a rdf:Property ;
+    rdfs:label "Checklist"@en, "Sjekkliste"@no ;
+    rdfs:comment "The checks to perform on this machine on each visit of a control round: a JSON-encoded ChecklistTemplate v1 (the cross-repo checklists contract). Set on a Machine category it is the default for every machine in that category; set on an asset it replaces the category default"@en ;
+    rdfs:domain machine:Machine ;
+    rdfs:range xsd:string .
+
 # ===================================================================
 # Property Definitions - Dimensions and Weight
 # ===================================================================
