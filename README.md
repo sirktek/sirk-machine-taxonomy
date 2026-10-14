@@ -84,16 +84,12 @@ Enumerations:
 - **PowerSource**: Electric, Hydraulic, Pneumatic, BatteryPowered, Manual
 - **OperationalStatus**: Operational, NeedsService, Broken, Retired
 
-### Accounting and Tax Properties
+### Commercial properties
 
-`machine:Machine` opts into the cross-cutting accounting properties defined in
-`taxonomy-commons` via `schema:domainIncludes`: `common:ledgerAccount` (Regnskapskonto),
-`common:bookValue` (Bokført verdi), `common:taxValue` (Skattemessig verdi) and
-`common:depreciationGroup` (Saldogruppe, an enumeration whose values are tagged per jurisdiction).
-There is no `common:wealthTaxValue` opt-in: for driftsmidler the formuesverdi equals the tax
-value at year end, so consumers derive it. The definitions and the `DepreciationGroupA`–`J`
-values are documented in the `taxonomy-commons` README. `CommonPropertyOptInTest` pins the
-opt-ins.
+`machine:Machine` opts into the cross-cutting `common:monthlyRent` (Månedsleie (eks. mva), private
+set `commercial`) defined in `taxonomy-commons` via `schema:domainIncludes`, as a machine let to a
+holder (leietaker) carries its monthly rent. The definition is documented in the `taxonomy-commons`
+README. `CommonPropertyOptInTest` pins the opt-in through the loader.
 
 ## RDF-S Schema
 
@@ -123,6 +119,13 @@ The test suite verifies:
 - Property definition type detection
 - Taxonomy statistics and caching
 - All PropertyDefinition functionality
+
+## Releases
+
+Every merge to `main` tags `3.<run number>` and publishes it to GitHub Packages, where
+sirk-orgadmin-backend consumes it. Maven Central (monthly publishing limit) is manual: run
+"Publish release to Maven Central" with the tag when a Central consumer needs that version. A
+Central release needs the `taxonomy-commons` version it depends on published to Central first.
 
 ## Related Projects
 

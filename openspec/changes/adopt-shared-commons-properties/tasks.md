@@ -28,18 +28,18 @@ them), `.github/workflows/build_tag_and_release.yml`,
 new `.github/workflows/publish_maven_central.yml`, `README.md`.
 Tests: `mvnq test -Dtest='CommonPropertyOptInTest,ControlChecklistPropertyTest'`
 
-- [ ] 1.1 Test first: rewrite `CommonPropertyOptInTest` on `MachineTaxonomyService` (D2:
+- [x] 1.1 Test first: rewrite `CommonPropertyOptInTest` on `MachineTaxonomyService` (D2:
       `machineOptsIntoMonthlyRent`, `machineHasNoAccountingProperties`; delete the two raw-Jena
       tests). Bump `taxonomy-commons` to `3.14` in `pom.xml`. Run: `monthlyRent` fails and the
       accounting test fails on `ledgerAccount` / `depreciationGroup`.
-- [ ] 1.2 `machine-base.ttl`: replace the accounting opt-ins and the wealthTaxValue comment with
+- [x] 1.2 `machine-base.ttl`: replace the accounting opt-ins and the wealthTaxValue comment with
       the D1 block; rewrite the `machine:controlChecklist` comment (D1). Group tests pass.
-- [ ] 1.3 CI (D3): remove the Central steps from `build_tag_and_release.yml` and fix the
+- [x] 1.3 CI (D3): remove the Central steps from `build_tag_and_release.yml` and fix the
       SNAPSHOT message; add `publish_maven_central.yml`. Diff both against
       `/home/mkf/dev/sirk-taxonomy-commons/.github/workflows/` and keep only the D3 differences;
       `actionlint` if installed.
-- [ ] 1.4 README: "Commercial properties" (D4) and "Releases" (D3).
-- [ ] 1.5 `mvnq test` once (full suite).
+- [x] 1.4 README: "Commercial properties" (D4) and "Releases" (D3).
+- [x] 1.5 `mvnq test` once (full suite).
 
 ## Not in scope
 
