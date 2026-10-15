@@ -91,6 +91,11 @@ set `commercial`) defined in `taxonomy-commons` via `schema:domainIncludes`, as 
 holder (leietaker) carries its monthly rent. The definition is documented in the `taxonomy-commons`
 README. `CommonPropertyOptInTest` pins the opt-in through the loader.
 
+`machine:Machine` likewise opts into the shared `common:color`, `material`, `variant`, `serialNumber`,
+`model`, `operationsAndMaintenanceManual`, `length`, `width`, `height`, `weight`, `volume`,
+`manufacturer` and `controlChecklist` (range `common:ChecklistTemplateEntry`, typed `CHECKLIST`);
+they are declared once in `taxonomy-commons` and carry `common#` IRIs.
+
 ## RDF-S Schema
 
 The taxonomy is defined using RDF-S in Turtle format with:

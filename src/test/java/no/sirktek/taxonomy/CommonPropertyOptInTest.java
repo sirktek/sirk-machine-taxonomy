@@ -31,6 +31,27 @@ class CommonPropertyOptInTest {
     }
 
     @Test
+    void machineCarriesSharedPropertiesOnceWithCommonIris() {
+        for (String name : List.of("color", "material", "variant", "serialNumber", "model",
+                "operationsAndMaintenanceManual", "length", "width", "height", "weight", "volume",
+                "manufacturer")) {
+            List<PropertyDefinition> matches = machine().properties().stream()
+                    .filter(p -> name.equals(p.name()))
+                    .toList();
+
+            assertEquals(1, matches.size(), "Machine should carry " + name + " exactly once");
+            assertEquals("http://taxonomy.sirktek.no/common#" + name, matches.get(0).uri());
+        }
+        assertFalse(machine().properties().stream()
+                .anyMatch(p -> p.uri().startsWith("http://taxonomy.sirktek.no/machine#")
+                        && SHARED.contains(p.name())), "No machine# IRI for shared names");
+    }
+
+    private static final List<String> SHARED = List.of("color", "material", "variant",
+            "serialNumber", "model", "operationsAndMaintenanceManual", "length", "width", "height",
+            "weight", "volume", "manufacturer", "controlChecklist");
+
+    @Test
     void machineHasNoAccountingProperties() {
         List<String> names = machine().properties().stream().map(PropertyDefinition::name).toList();
 
