@@ -1,3 +1,5 @@
+Superseded by sirk-taxonomy-commons consolidate-shared-properties (Group 5).
+
 # Proposal — checklists (machine-taxonomy slice)
 
 ## Why
