@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Pins the machine taxonomy's opt-ins to shared commons properties through the loader:
- * Machine carries the commercial {@code monthlyRent} and no accounting properties.
+ * Machine carries the commercial {@code monthlyRent} and the accounting set.
  */
 class CommonPropertyOptInTest {
 
@@ -52,14 +52,15 @@ class CommonPropertyOptInTest {
             "weight", "volume", "manufacturer", "controlChecklist");
 
     @Test
-    void machineHasNoAccountingProperties() {
-        List<String> names = machine().properties().stream().map(PropertyDefinition::name).toList();
-
-        for (String accounting : List.of("ledgerAccount", "depreciationGroup", "valuations",
-                "bookValue", "taxValue", "wealthTaxValue")) {
-            assertFalse(names.contains(accounting), "Machine should not carry " + accounting);
+    void machineOptsIntoAccounting() {
+        for (String name : List.of("ledgerAccount", "depreciationGroup", "valuations")) {
+            List<PropertyDefinition> matches = machine().properties().stream()
+                    .filter(p -> name.equals(p.name()))
+                    .toList();
+            assertEquals(1, matches.size(), "Machine should carry " + name + " exactly once");
+            assertEquals("http://taxonomy.sirktek.no/common#" + name, matches.get(0).uri());
+            assertEquals("accounting", matches.get(0).privateSet());
         }
-        assertTrue(names.contains("monthlyRent"));
     }
 
     private CategoryInfo machine() {
