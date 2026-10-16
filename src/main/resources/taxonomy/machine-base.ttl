@@ -436,6 +436,13 @@ machine:stitchTypes a rdf:Property ;
 # (leietaker) carries its monthly rent, as leased real estate does.
 common:monthlyRent schema:domainIncludes machine:Machine .
 
+# Accounting (private set "accounting", owner only): machines are
+# depreciable business assets, written down yearly per saldogruppe (Norway:
+# usually d). Same opt-in as logistics:RealEstate.
+common:ledgerAccount schema:domainIncludes machine:Machine .
+common:depreciationGroup schema:domainIncludes machine:Machine .
+common:valuations schema:domainIncludes machine:Machine .
+
 # Shared properties declared once in taxonomy-commons (consolidate-shared-properties).
 common:color schema:domainIncludes machine:Machine .
 common:material schema:domainIncludes machine:Machine .
