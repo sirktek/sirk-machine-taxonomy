@@ -441,6 +441,7 @@ common:color schema:domainIncludes machine:Machine .
 common:material schema:domainIncludes machine:Machine .
 common:variant schema:domainIncludes machine:Machine .
 common:serialNumber schema:domainIncludes machine:Machine .
+common:condition schema:domainIncludes machine:Machine .
 common:model schema:domainIncludes machine:Machine .
 common:operationsAndMaintenanceManual schema:domainIncludes machine:Machine .
 common:length schema:domainIncludes machine:Machine .
