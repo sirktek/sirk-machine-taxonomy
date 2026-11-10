@@ -86,10 +86,13 @@ Enumerations:
 
 ### Commercial properties
 
-`machine:Machine` opts into the cross-cutting `common:monthlyRent` (Månedsleie (eks. mva), private
+`machine:Machine` opts into the cross-cutting `common:monthlyRentExVAT` (Månedsleie (eks. mva), private
 set `commercial`) defined in `taxonomy-commons` via `schema:domainIncludes`, as a machine let to a
 holder (leietaker) carries its monthly rent. The definition is documented in the `taxonomy-commons`
 README. `CommonPropertyOptInTest` pins the opt-in through the loader.
+
+`machine:Machine` opts into the shared `common:yearOfManufacture` (replaces the former
+`machine:yearOfManufacture`; same key) and `common:installationYear`, both `xsd:integer` and public.
 
 `machine:Machine` likewise opts into the shared `common:color`, `material`, `variant`, `serialNumber`,
 `model`, `operationsAndMaintenanceManual`, `length`, `width`, `height`, `weight`, `volume`,

@@ -215,13 +215,13 @@ class PropertyDefinitionTest {
     }
 
     @Test
-    void shouldDetectYearPropertyType() {
+    void shouldDetectYearOfManufactureAsInteger() {
         PropertyDefinition property = PropertyDefinition.builder()
                 .name("yearOfManufacture")
                 .rangeType("http://www.w3.org/2001/XMLSchema#integer")
                 .build();
 
-        assertEquals(PropertyType.YEAR, getPropertyType(property));
+        assertEquals(PropertyType.INTEGER, getPropertyType(property));
     }
 
     @Test
@@ -354,7 +354,7 @@ class PropertyDefinitionTest {
         // v3.0: EMISSION and CONSISTS_OF moved to CommonPropertyDefinition.
         PropertyType[] allTypes = PropertyType.values();
 
-        assertEquals(24, allTypes.length);
+        assertEquals(23, allTypes.length);
 
         assertNotNull(PropertyType.valueOf("STRING"));
         assertNotNull(PropertyType.valueOf("DECIMAL"));
@@ -362,7 +362,6 @@ class PropertyDefinitionTest {
         assertNotNull(PropertyType.valueOf("DATE"));
         assertNotNull(PropertyType.valueOf("BOOLEAN"));
         assertNotNull(PropertyType.valueOf("INTEGER_SCALE_1TO5"));
-        assertNotNull(PropertyType.valueOf("YEAR"));
         assertNotNull(PropertyType.valueOf("DECIMAL_CM"));
         assertNotNull(PropertyType.valueOf("UNIT"));
         assertNotNull(PropertyType.valueOf("DECIMAL_KG"));

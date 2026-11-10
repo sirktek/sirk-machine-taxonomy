@@ -50,7 +50,6 @@ public class MachinePropertyDefinition {
             case "http://www.w3.org/2001/XMLSchema#boolean" -> PropertyType.BOOLEAN;
             case "http://www.w3.org/2001/XMLSchema#anyURI"  -> PropertyType.URL;
             case "http://www.w3.org/2001/XMLSchema#integer" -> {
-                if (name != null && name.equals("yearOfManufacture")) yield PropertyType.YEAR;
                 yield PropertyType.INTEGER;
             }
             default -> {
@@ -83,7 +82,6 @@ public class MachinePropertyDefinition {
         /** Integer scale 1-5 property type */
         INTEGER_SCALE_1TO5,
         /** Year property type (integer representing a year) */
-        YEAR,
         /** Decimal centimeters property type */
         DECIMAL_CM,
         /** Unit property type */
