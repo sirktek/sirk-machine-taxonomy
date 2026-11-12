@@ -45,6 +45,22 @@ class CommonPropertyOptInTest {
     }
 
     @Test
+    void machineOptsIntoServiceLifeNewPriceAndEmission() {
+        assertOnce("expectedServiceLife", "http://www.w3.org/2001/XMLSchema#integer", null);
+        assertOnce("newPriceExVAT", "http://www.w3.org/2001/XMLSchema#decimal", "commercial");
+        assertOnce("emissionPerUnit", "http://taxonomy.sirktek.no/common#EmissionEntry", null);
+    }
+
+    private void assertOnce(String name, String range, String privateSet) {
+        List<PropertyDefinition> matches = machine().properties().stream()
+                .filter(p -> name.equals(p.name())).toList();
+        assertEquals(1, matches.size(), name);
+        assertEquals("http://taxonomy.sirktek.no/common#" + name, matches.get(0).uri());
+        assertEquals(range, matches.get(0).rangeType(), name);
+        assertEquals(privateSet, matches.get(0).privateSet(), name);
+    }
+
+    @Test
     void machineCarriesSharedPropertiesOnceWithCommonIris() {
         for (String name : List.of("color", "material", "variant", "serialNumber", "model",
                 "operationsAndMaintenanceManual", "length", "width", "height", "weight", "volume",

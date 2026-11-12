@@ -424,8 +424,11 @@ machine:stitchTypes a rdf:Property ;
 # ===================================================================
 
 # Commercial terms (private set "commercial"): a machine let to a holder
-# (leietaker) carries its monthly rent, as leased real estate does.
+# (leietaker) carries its monthly rent, as leased real estate does. The new
+# price (ex VAT) of an equivalent new machine is the reference for the
+# reuse-savings method.
 common:monthlyRentExVAT schema:domainIncludes machine:Machine .
+common:newPriceExVAT schema:domainIncludes machine:Machine .
 
 # Accounting (private set "accounting", owner only): machines are
 # depreciable business assets, written down yearly per saldogruppe (Norway:
@@ -435,9 +438,14 @@ common:depreciationGroup schema:domainIncludes machine:Machine .
 common:valuations schema:domainIncludes machine:Machine .
 
 # Age: year of manufacture (was machine:yearOfManufacture; same key, now a
-# common# IRI) and year of installation. Public, xsd:integer.
+# common# IRI), year of installation and expected service life in whole years.
+# Public, xsd:integer.
 common:yearOfManufacture schema:domainIncludes machine:Machine .
 common:installationYear schema:domainIncludes machine:Machine .
+common:expectedServiceLife schema:domainIncludes machine:Machine .
+
+# LCA (emissionPerUnit is declared in commons on Model and Resource).
+common:emissionPerUnit schema:domainIncludes machine:Machine .
 
 # Shared properties declared once in taxonomy-commons (consolidate-shared-properties).
 common:color schema:domainIncludes machine:Machine .
