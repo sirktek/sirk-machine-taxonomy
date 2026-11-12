@@ -94,6 +94,10 @@ README. `CommonPropertyOptInTest` pins the opt-in through the loader.
 `machine:Machine` opts into the shared `common:yearOfManufacture` (replaces the former
 `machine:yearOfManufacture`; same key) and `common:installationYear`, both `xsd:integer` and public.
 
+`machine:Machine` also opts into `common:expectedServiceLife` (`xsd:integer`, public),
+`common:newPriceExVAT` (`xsd:decimal`, private set `commercial`) and `common:emissionPerUnit`
+(range `common:EmissionEntry`, public), all declared once in `taxonomy-commons`.
+
 `machine:Machine` likewise opts into the shared `common:color`, `material`, `variant`, `serialNumber`,
 `model`, `operationsAndMaintenanceManual`, `length`, `width`, `height`, `weight`, `volume`,
 `manufacturer` and `controlChecklist` (range `common:ChecklistTemplateEntry`, typed `CHECKLIST`);
